@@ -12,21 +12,39 @@ contador.textContent = valorInicial;
 let contadorValor = contador.textContent;
 console.log(contadorValor);
 
-botones.forEach((boton) => {
+for (const boton of botones) {
   boton.addEventListener("click", (e) => {
     const clase = e.currentTarget.classList;
     if (clase.contains("decrement")) {
       console.log("Decrementando");
-      contadorValor--;
-      contador.textContent = contadorValor;
+      decrementarContador();
     } else if (clase.contains("increment")) {
       console.log("Incrementando");
-      contadorValor++;
-      contador.textContent = contadorValor;
+      incrementarContador();
     } else if (clase.contains("reset")) {
       console.log("Reseteando");
-      contadorValor = valorInicial;
-      contador.textContent = contadorValor;
+      resetearContador();
     }
   });
-});
+}
+
+// Funciones. Refactorizamos el código para que sea más legible y mantenible mediante funciones.
+
+function decrementarContador() {
+  contadorValor--;
+  actualizarValorContador();
+}
+
+function incrementarContador() {
+  contadorValor++;
+  actualizarValorContador();
+}
+
+function resetearContador() {
+  contadorValor = valorInicial;
+  actualizarValorContador();
+}
+
+function actualizarValorContador() {
+  contador.textContent = contadorValor;
+}
